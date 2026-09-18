@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "humao.rest-client",
+    "ms-azuretools.vscode-docker"
+  ]
+}

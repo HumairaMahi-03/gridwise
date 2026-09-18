@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "setup",
+      "type": "shell",
+      "command": "python -m venv .venv && .venv/bin/pip install -r requirements.txt && cp -n .env.example .env || true",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    { "label": "test", "type": "shell", "command": "pytest -q", "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true } },
+    { "label": "validate cases (offline)", "type": "shell",
+      "command": "python scripts/validate_cases.py", "problemMatcher": [] },
+    { "label": "serve", "type": "shell",
+      "command": "uvicorn app.main:app --reload --port 8000", "problemMatcher": [],
+      "isBackground": true }
+  ]
+}
