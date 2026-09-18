@@ -477,6 +477,35 @@ Fly.io, Apple Silicon) work too.
 
 ---
 
+## Verified end-to-end
+
+### Health check
+
+![Health check](Image/GetHealth.png)
+
+### Live LLM validation — all 10 official cases at the reference optimum
+
+![Live validation part 1](Image/sampleTestCase.png)
+![Live validation part 2](Image/SampleTestCase2.png)
+
+Every case matches the published optimum exactly (BDT), including
+`total_grid_kwh` and `peak_grid_kwh`. The transient `HTTP 429` retries
+visible in the log demonstrate the exponential-backoff handler built into
+the LLM client.
+
+### Example response — SAMPLE-01 via Thunder Client
+
+![Directive interpretation](Image/optimize-energy.png)
+![Hourly plan start](Image/optimize-energy2.png)
+![Hourly plan end and totals](Image/optimize-energy3.png)
+
+The response shows:
+- 24-hour plan with battery state-of-charge transitions
+- Directive interpretation matching the pack's ground truth
+  (`solar_reduction`, hours `[12, 13]`, factor `0.25`)
+- `total_cost_bdt: 38365.0` — exact reference optimum
+- End-of-day battery neutrality (returns to `110.0` kWh)
+
 ## Limitations
 
 - **Hour ranges are half-open**, per the official case pack: a window covers
