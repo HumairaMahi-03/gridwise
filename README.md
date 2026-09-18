@@ -548,6 +548,8 @@ the LLM client.
 ![Directive interpretation](Image/optimize-energy.png)
 ![Hourly plan start](Image/optimize-energy2.png)
 ![Hourly plan end and totals](Image/optimize-energy3.png)
+<img width="626" height="1032" alt="image" src="https://github.com/user-attachments/assets/7659fd70-0e0a-47cb-942f-2fe58dcfcedf" />
+
 
 The response shows:
 - 24-hour plan with battery state-of-charge transitions
