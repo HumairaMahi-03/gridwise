@@ -6,7 +6,7 @@ An HTTP API that takes a 24-hour campus energy scenario plus free-text operator 
 [![Backend Deployment](https://img.shields.io/badge/Render-API%20Endpoint-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://gridwise-kezo.onrender.com/)
 
 **Live Deployments:**
-* **Web Interface:** [gridwise-xi.vercel.app](https://gridwise-xi.vercel.app/)
+* **Web Interface:** [gridwise-xi.vercel.app](https://gridwise-xi.vercel.app/docs)
 * **API Service:** [gridwise-kezo.onrender.com](https://gridwise-kezo.onrender.com/)
 
 ---
