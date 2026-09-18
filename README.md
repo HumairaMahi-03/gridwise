@@ -18,6 +18,54 @@ The division of labour is the point of the design:
 
 ---
 
+## System Workflow
+
+graph TD
+    A[📩 Incoming HTTP Request] -->|POST /optimize-energy| B[1. FastAPI Route]
+    B -->|Validate JSON Request| C{2. Pydantic Input Validation}
+
+    C -->|Invalid Scenario| X[❌ 422 Validation Error]
+    C -->|Valid Scenario| D[3. LLM Operator-Note Interpreter]
+
+    D -->|Provider unavailable| Y[⚠️ 503 Provider Error]
+    D -->|Interpret Notes| E[4. Deterministic Guardrails]
+
+    E -->|Invalid Directives| R[5. One Repair Round]
+    R --> E
+
+    E -->|Still Invalid| Z[❌ 502 Interpretation Error]
+    E -->|Valid Directives| F[6. Directive Compiler]
+
+    F -->|Merge Overlapping Constraints| G[7. PuLP / CBC MILP Optimizer]
+
+    G -->|No Feasible Schedule| N[❌ 422 Infeasible Scenario]
+    G -->|Solver Failure| O[❌ 500 Solver Error]
+    G -->|Optimal Schedule| H[8. Independent Schedule Validator]
+
+    H -->|Constraint Violation| P[❌ 500 Validation Error]
+    H -->|Valid Schedule| I[9. Round & Re-validate Published Values]
+
+    I -->|Valid Published Plan| J[📤 200 OK Structured JSON Response]
+
+    style A fill:#004d40,stroke:#00bfa5,stroke-width:3px,color:#ffffff
+    style B fill:#0d47a1,stroke:#29b6f6,stroke-width:2px,color:#ffffff
+    style C fill:#4a148c,stroke:#ab47bc,stroke-width:2px,color:#ffffff
+    style D fill:#1565c0,stroke:#42a5f5,stroke-width:2px,color:#ffffff
+    style E fill:#e65100,stroke:#ffb74d,stroke-width:2px,color:#ffffff
+    style R fill:#ef6c00,stroke:#ffb74d,stroke-width:2px,color:#ffffff
+    style F fill:#6a1b9a,stroke:#ba68c8,stroke-width:2px,color:#ffffff
+    style G fill:#283593,stroke:#7986cb,stroke-width:2px,color:#ffffff
+    style H fill:#00695c,stroke:#4db6ac,stroke-width:2px,color:#ffffff
+    style I fill:#2e7d32,stroke:#81c784,stroke-width:2px,color:#ffffff
+    style J fill:#1b5e20,stroke:#66bb6a,stroke-width:3px,color:#ffffff
+
+    style X fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+    style Y fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+    style Z fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+    style N fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+    style O fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+    style P fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
+
 ## Quickstart
 
 Open the folder in VS Code and run **Terminal → Run Task → setup**, or:
