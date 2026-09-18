@@ -1,20 +1,21 @@
 # Gridwise — Smart Campus Energy Optimizer
 
-An HTTP API that takes a 24-hour campus energy scenario plus free-text operator
-notes, interprets the notes with an LLM, validates the resulting directives
-deterministically, and solves for the cheapest legal 24-hour schedule with
-linear programming.
+An HTTP API that takes a 24-hour campus energy scenario plus free-text operator notes, interprets the notes with an LLM, validates the resulting directives deterministically, and solves for the cheapest legal 24-hour schedule with linear programming.
+
+[![Frontend Deployment](https://img.shields.io/badge/Vercel-Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://gridwise-xi.vercel.app/)
+[![Backend Deployment](https://img.shields.io/badge/Render-API%20Endpoint-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://gridwise-kezo.onrender.com/)
+
+**Live Deployments:**
+* **Web Interface:** [gridwise-xi.vercel.app](https://gridwise-xi.vercel.app/)
+* **API Service:** [gridwise-kezo.onrender.com](https://gridwise-kezo.onrender.com/)
+
+---
 
 The division of labour is the point of the design:
 
-- **The LLM only reads language.** It converts operator notes into structured
-  directives from a closed vocabulary. It never decides when to charge, when to
-  import, or what anything should cost.
-- **The optimizer makes every energy decision.** A mixed-integer linear program
-  minimises grid cost subject to the scenario's physics and the directives.
-- **Nothing in between is trusted.** A deterministic guardrail layer validates
-  the model's output before it reaches the solver, and an independent validator
-  re-checks the finished schedule before it reaches the client.
+- **The LLM only reads language.** It converts operator notes into structured directives from a closed vocabulary. It never decides when to charge, when to import, or what anything should cost.
+- **The optimizer makes every energy decision.** A mixed-integer linear program minimises grid cost subject to the scenario's physics and the directives.
+- **Nothing in between is trusted.** A deterministic guardrail layer validates the model's output before it reaches the solver, and an independent validator re-checks the finished schedule before it reaches the client.
 
 ---
 
