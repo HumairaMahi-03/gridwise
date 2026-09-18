@@ -20,6 +20,7 @@ The division of labour is the point of the design:
 
 ## System Workflow
 
+```mermaid
 graph TD
     A[📩 Incoming HTTP Request] -->|POST /optimize-energy| B[1. FastAPI Route]
     B -->|Validate JSON Request| C{2. Pydantic Input Validation}
@@ -65,7 +66,7 @@ graph TD
     style N fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
     style O fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
     style P fill:#b71c1c,stroke:#ef5350,stroke-width:2px,color:#ffffff
-
+```
 ## Quickstart
 
 Open the folder in VS Code and run **Terminal → Run Task → setup**, or:
